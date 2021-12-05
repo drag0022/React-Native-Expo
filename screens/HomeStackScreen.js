@@ -6,10 +6,13 @@ import HomeScreen from './HomeScreen';
 
 const Stack = createStackNavigator();
 
-export default function HomeStackScreen() {
+export default function HomeStackScreen({ data, setData }) {
 	return (
 		<Stack.Navigator>
-			<Stack.Screen name="Home" component={HomeScreen} />
+			<Stack.Screen
+				name="Home"
+				children={() => <HomeScreen data={data} setData={setData} />}
+			/>
 			<Stack.Screen
 				name="AddNewJournal"
 				component={AddNewJournal}

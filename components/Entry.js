@@ -1,11 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
-
-export default function Entry() {
+export default function Entry({ data }) {
 	return (
 		<View style={styles.container}>
 			<Text>This is the latest entry</Text>
-			<Text>Title:</Text>
+			<Text>Title: {`${data[0].title}`}</Text>
 			<Text>Description:</Text>
 			<Text>Picture:</Text>
 			<Text>Location Data:</Text>

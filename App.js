@@ -26,7 +26,7 @@ export default function App() {
 			>
 				<Tab.Screen
 					name="Home"
-					component={HomeStackScreen}
+					children={() => <HomeStackScreen data={data} setData={setData} />}
 					options={{ headerShown: false }}
 				/>
 				<Tab.Screen
