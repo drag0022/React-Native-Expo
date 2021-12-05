@@ -1,14 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import HomeScreen from './screens/HomeScreen';
+import HomeStackScreen from './screens/HomeStackScreen';
 import JournalEntries from './screens/JournalEntries';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import initialData from './data/data';
 const Tab = createBottomTabNavigator();
-
 export default function App() {
 	const [data, setData] = useState(initialData);
 
@@ -23,9 +22,11 @@ export default function App() {
 							: (iconName = `${route.name.toLocaleLowerCase()}-outline`);
 						return <Ionicons name={iconName} size={size} color={color} />;
 					},
+
+					headerShown: false,
 				})}
 			>
-				<Tab.Screen name="Home" component={HomeScreen} />
+				<Tab.Screen name="Home" component={HomeStackScreen} />
 				<Tab.Screen
 					name="Journal"
 					children={() => <JournalEntries data={data} setData={setData} />}
