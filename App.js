@@ -22,11 +22,13 @@ export default function App() {
 							: (iconName = `${route.name.toLocaleLowerCase()}-outline`);
 						return <Ionicons name={iconName} size={size} color={color} />;
 					},
-
-					headerShown: false,
 				})}
 			>
-				<Tab.Screen name="Home" component={HomeStackScreen} />
+				<Tab.Screen
+					name="Home"
+					component={HomeStackScreen}
+					options={{ headerShown: false }}
+				/>
 				<Tab.Screen
 					name="Journal"
 					children={() => <JournalEntries data={data} setData={setData} />}
