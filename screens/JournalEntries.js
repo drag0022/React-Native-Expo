@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function JournalEntries() {
+export default function JournalEntries({ data, setData }) {
 	return (
 		<View>
-			<Text></Text>
+			<Text>{data[0].body}</Text>
 		</View>
 	);
 }
