@@ -1,14 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import HomeScreen from './screens/HomeScreen';
 import JournalEntries from './screens/JournalEntries';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
+import initialData from './data/data';
 const Tab = createBottomTabNavigator();
 
 export default function App() {
+	const [data, setData] = useState(initialData);
+
 	return (
 		<NavigationContainer>
 			<Tab.Navigator
@@ -23,7 +26,10 @@ export default function App() {
 				})}
 			>
 				<Tab.Screen name="Home" component={HomeScreen} />
-				<Tab.Screen name="Journal" component={JournalEntries} />
+				<Tab.Screen
+					name="Journal"
+					children={() => <JournalEntries data={data} setData={setData} />}
+				/>
 			</Tab.Navigator>
 		</NavigationContainer>
 	);
