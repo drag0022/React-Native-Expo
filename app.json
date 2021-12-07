@@ -15,18 +15,24 @@
     },
     "assetBundlePatterns": [
       "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true
+    ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
     },
     "android": {
+      "permissions": ["ACCESS_COARSE_LOCATION", "ACCESS_FINE_LOCATION"],
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       }
     },
-    "web": {
-      "favicon": "./assets/favicon.png"
+    "ios": {
+      "infoPlist": {
+        "supportsTablet": true,
+        "NSLocationAlwaysUsageDescription": "We need to display your location on the home screen.",
+        "NSCameraUsageDescription": "Allow Journals to use the camera",
+        "NSMicrophoneUsageDescription": "Allow Journals to use the microphone"
+      }
     }
   }
-}
