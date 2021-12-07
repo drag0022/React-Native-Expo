@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import {
 	StyleSheet,
 	Text,
@@ -7,31 +7,42 @@ import {
 	Button,
 	SafeAreaView,
 } from 'react-native';
+import Camera from './Camera';
+export default function AddNewEntry({ navigation }) {
+	const [isCameraOpen, setIsCameraOpen] = useState(false);
 
-export default function AddNewEntry() {
+	const handleOpenCamera = () => {
+		setIsCameraOpen(true);
+	};
 	return (
 		<SafeAreaView>
-			<View style={styles.container}>
-				<Text>Enter A Title:</Text>
-				<TextInput style={styles.title} placeholder="Journal Title..." />
-				<Text>Describe your day:</Text>
-				<TextInput
-					style={styles.textarea}
-					placeholder="Description of journal..."
-				/>
-				<Button
-					title="Take A Picture"
-					onPress={() => {
-						console.log('taking a picture');
-					}}
-				/>
-			</View>
-			<Button
-				title="Submit Journal"
-				onPress={() => {
-					console.log('submitting journal');
-				}}
-			/>
+			{isCameraOpen ? (
+				<Camera setIsCameraOpen={setIsCameraOpen} />
+			) : (
+				<SafeAreaView>
+					<View style={styles.container}>
+						<Text>Enter A Title:</Text>
+						<TextInput style={styles.title} placeholder="Journal Title..." />
+						<Text>Describe your day:</Text>
+						<TextInput
+							style={styles.textarea}
+							placeholder="Description of journal..."
+						/>
+						<Button
+							title="Take A Picture"
+							onPress={() => {
+								handleOpenCamera();
+							}}
+						/>
+					</View>
+					<Button
+						title="Submit Journal"
+						onPress={() => {
+							console.log('submitting journal');
+						}}
+					/>
+				</SafeAreaView>
+			)}
 		</SafeAreaView>
 	);
 }
