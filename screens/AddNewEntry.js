@@ -7,9 +7,20 @@ import {
 	Button,
 	SafeAreaView,
 } from 'react-native';
-import Camera from './Camera';
+import CameraUI from './Camera';
+import { Camera } from 'expo-camera';
 export default function AddNewEntry({ navigation }) {
 	const [isCameraOpen, setIsCameraOpen] = useState(false);
+
+	const [hasPermission, setHasPermission] = useState(true);
+
+	useEffect(() => {
+		(async () => {
+			const { status } = await Camera.requestCameraPermissionsAsync();
+			setHasPermission(status === 'granted');
+		})();
+		console.log(hasPermission);
+	}, []);
 
 	const handleOpenCamera = () => {
 		setIsCameraOpen(true);
@@ -17,7 +28,10 @@ export default function AddNewEntry({ navigation }) {
 	return (
 		<SafeAreaView>
 			{isCameraOpen ? (
-				<Camera setIsCameraOpen={setIsCameraOpen} />
+				<CameraUI
+					setIsCameraOpen={setIsCameraOpen}
+					hasPermission={hasPermission}
+				/>
 			) : (
 				<SafeAreaView>
 					<View style={styles.container}>
