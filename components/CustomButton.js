@@ -1,7 +1,7 @@
 import { Center } from "native-base";
 import React from "react";
 import {TouchableOpacity, Text, View, StyleSheet} from 'react-native'
-import { color } from "react-native-reanimated";
+
 
 const CustomButton = (props) =>{
     return(
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
         padding:15
     },
     button:{
-        borderRadius:10,
+        borderRadius:5,
         width:230,
         fontWeight:'bold',
         alignSelf:'center',
@@ -33,8 +33,10 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
         color:'#5c374c',
+        width:170,
+	    height:45,
     },
     buttonText:{
         color:'#fff'
-    }
+    },
 })

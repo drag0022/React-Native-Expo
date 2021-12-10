@@ -45,13 +45,15 @@ const styles = StyleSheet.create({
     fontSize: 42,
     lineHeight: 84,
     fontWeight: 'bold',
+		marginLeft: 15,
   },
 	text:{
 		paddingTop:15,
 		alignItems:'center',
-		fontWeight:'600',
+		fontWeight:'700',
 		fontSize:20,
-		color:'#A10582'
+		color:'#A10582',
+		marginLeft: 10,
 	
 	},
 	textBody:{

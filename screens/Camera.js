@@ -1,11 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, Text, View, Pressable, Button } from 'react-native';
+import { StyleSheet, Text, View, Pressable, Button, border } from 'react-native';
 import { Camera } from 'expo-camera';
+import CustomButton from '../components/CustomButton';
+import { Center, InputLeftAddon } from 'native-base';
+import { WhiteBalance } from 'expo-camera/build/Camera.types';
+import { MaterialIcons } from '@expo/vector-icons'; 
+
 export default function CameraUI({ setIsCameraOpen, hasPermission }) {
 	const [type, setType] = useState(Camera.Constants.Type.back);
 	//inside the camera component, add the ref pointer
 	let camera = useRef();
-
+	
 	const takePicture = () => {
 		const options = {
 			quality: 1,
@@ -39,67 +44,88 @@ export default function CameraUI({ setIsCameraOpen, hasPermission }) {
 
 	return (
 		hasPermission && (
-			<View>
-				<Button
-					title="Back"
-					onPress={() => {
-						setIsCameraOpen(false);
-					}}
-				/>
-				<Text>Take A Picture</Text>
-				<View>
-					<Camera
-						style={styles.camera}
-						type={type}
-						ref={(r) => {
-							camera = r;
+			<View style={styles.container}>
+				<View style={styles.btnBack}>
+					<Button
+						title="Back"
+						onPress={() => {
+							setIsCameraOpen(false);
 						}}
 					/>
-					<View style={styles.buttonContainer}>
-          <Pressable
-            style={styles.button}
-            onPress={() => {
-              setType(
-                type === Camera.Constants.Type.back
-                  ? Camera.Constants.Type.front
-                  : Camera.Constants.Type.back
-              );
-            }}
-          >
-            <Text style={styles.buttonFlip} title="flip-camera"> Flip </Text>
-          </Pressable>
-        </View>
-				</View>
-				<Button
-				style={styles.buttonTake}
-					title="Take Picture"
-					onPress={() => {
-						takePicture();
-					}}
-				/>
+				</View>	
+					<Text style={styles.title}>Take a picture</Text>
+					<View>
+						<Camera
+							style={styles.camera}
+							type={type}
+							ref={(r) => {
+								camera = r;
+							}}
+						/>
+					</View>
+					<View style={styles.btnFlip}>
+						<MaterialIcons.Button name="flip-camera-android" backgroundColor="#c197ae"  
+						onPress={() => {
+							setType(
+									type === Camera.Constants.Type.back
+										? Camera.Constants.Type.front
+										: Camera.Constants.Type.back
+										);
+							}} >
+							Flip
+						</MaterialIcons.Button>
+					</View>
+					<View>
+						<CustomButton 
+							color= '#5c374c'
+							onPress={() => {
+								takePicture();
+							}} title="Take Picture" />
+					</View>
 			</View>
-		)
-	);
-}
+			)
+		);
+	}
 
 const styles = StyleSheet.create({
 	container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+		flexDirection: 'column',
+		alignContent: 'center',
+		padding: 20,
+		backgroundColor: '#d3d3d370',
+		borderRadius: 5,
+		height: 600,
+		marginTop: 1,
+		margin: 20,
+		alignContent: 'center',
+    borderWidth: 0.2,
+		borderBottomColor:'#5c374c',
+		borderBottomWidth:8,
   },
 	camera: {
 		width: 300,
-		height: 400,
-		margin: 10,
+		height: 300,
+		marginLeft: 20,
+		marginRight: 10,
 	},
-	buttonContainer: {},
-  text: {
-    color: 'white',
-    fontSize: 24,
+	btnBack:{
+		alignSelf: 'flex-start',
+	
+	},
+	btnFlip:{
+	color:'#ffffff',
+	width:100,
+	height:40,
+	borderRadius:5,
+	marginLeft:20,
+	marginTop:10
+	},
+	title: {
+		marginLeft:20,
+		paddingTop:0,
+    color: '#5c374c',
+    fontSize: 30,
+    lineHeight: 54,
+    fontWeight: 'bold',
   },
-  buttonFlip: {
-		color: 'blue'
-	},
 });

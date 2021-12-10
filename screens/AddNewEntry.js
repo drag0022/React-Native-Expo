@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import CameraUI from './Camera';
 import { Camera } from 'expo-camera';
-import TakeAPicture from '../components/TakeAPicture';
+import CustomButton from '../components/CustomButton';
 export default function AddNewEntry({ navigation }) {
 	const [isCameraOpen, setIsCameraOpen] = useState(false);
 
@@ -44,12 +44,12 @@ export default function AddNewEntry({ navigation }) {
 							style={styles.textarea}
 							placeholder="Description of journal..."
 						/>
-						<TakeAPicture onPress={() => {
+						<CustomButton onPress={() => {
 								handleOpenCamera();
 							}}
 							title="Take a Picture" />
 					</View>
-					<TakeAPicture onPress={() => {
+					<CustomButton onPress={() => {
 							console.log('submitting journal');
 				}} title="Submit Journal" />
 				</SafeAreaView>
