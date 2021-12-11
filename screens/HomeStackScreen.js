@@ -15,7 +15,7 @@ export default function HomeStackScreen({ data, setData }) {
 			/>
 			<Stack.Screen
 				name="AddNewJournal"
-				component={AddNewJournal}
+				children={() => <AddNewJournal data={data} setData={setData} />}
 				options={{ title: 'Add New Journal' }}
 			/>
 		</Stack.Navigator>

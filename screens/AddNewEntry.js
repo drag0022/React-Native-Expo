@@ -12,7 +12,8 @@ import CameraUI from './CameraUI';
 import { Camera } from 'expo-camera';
 import * as Location from 'expo-location';
 import CustomButton from '../components/CustomButton';
-export default function AddNewEntry({ navigation }) {
+import LocationUI from '../components/LocationUI';
+export default function AddNewEntry({ setData, data }) {
 	const [isCameraOpen, setIsCameraOpen] = useState(false);
 	const [hasLocationPermission, setHasLocationPermission] = useState(false);
 	const [hasCameraPermission, setHasCameraPermission] = useState(false);
@@ -67,7 +68,9 @@ export default function AddNewEntry({ navigation }) {
 								}}
 								title="Add Location"
 							/>
-							<Text>{locationData && locationData.coords.latitude}</Text>
+							<Text>
+								{locationData && <LocationUI locationData={locationData} />}
+							</Text>
 							<CustomButton
 								onPress={() => {
 									handleOpenCamera();
