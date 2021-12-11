@@ -3,7 +3,7 @@ import { View, Text, SafeAreaView } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import AddNewJournal from './AddNewEntry';
 import HomeScreen from './HomeScreen';
-import Camera from './Camera';
+import CameraUI from './CameraUI';
 const Stack = createStackNavigator();
 
 export default function HomeStackScreen({ data, setData }) {
@@ -15,7 +15,7 @@ export default function HomeStackScreen({ data, setData }) {
 			/>
 			<Stack.Screen
 				name="AddNewJournal"
-				component={AddNewJournal}
+				children={() => <AddNewJournal data={data} setData={setData} />}
 				options={{ title: 'Add New Journal' }}
 			/>
 		</Stack.Navigator>
