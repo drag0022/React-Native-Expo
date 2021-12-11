@@ -13,12 +13,14 @@ import { Camera } from 'expo-camera';
 import * as Location from 'expo-location';
 import CustomButton from '../components/CustomButton';
 import LocationUI from '../components/LocationUI';
+import { useNavigation } from '@react-navigation/native';
 export default function AddNewEntry({ setData, data }) {
 	const [isCameraOpen, setIsCameraOpen] = useState(false);
 	const [hasLocationPermission, setHasLocationPermission] = useState(false);
 	const [hasCameraPermission, setHasCameraPermission] = useState(false);
 	const [locationData, setLocationData] = useState(undefined);
-
+	const [pictureURI, setPictureURI] = useState('');
+	const navigation = useNavigation();
 	useEffect(async () => {
 		await getCameraPermission();
 	}, []);
@@ -43,12 +45,24 @@ export default function AddNewEntry({ setData, data }) {
 		setLocationData(location);
 	};
 
+	const handleSubmitJournal = () => {
+		const journal = {
+			id: Date.now(),
+			title: 'title',
+			body: 'body',
+			image: pictureURI,
+			location: locationData,
+		};
+		setData([...data, journal]);
+		navigation.navigate('Journal');
+	};
 	return (
 		<SafeAreaView>
 			{isCameraOpen ? (
 				<CameraUI
 					setIsCameraOpen={setIsCameraOpen}
 					hasCameraPermission={hasCameraPermission}
+					setPictureURI={setPictureURI}
 				/>
 			) : (
 				<SafeAreaView>
@@ -80,7 +94,7 @@ export default function AddNewEntry({ setData, data }) {
 						</View>
 						<CustomButton
 							onPress={() => {
-								console.log('submitting journal');
+								handleSubmitJournal();
 							}}
 							title="Submit Journal"
 						/>

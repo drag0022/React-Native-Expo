@@ -13,7 +13,11 @@ import { Center, InputLeftAddon } from 'native-base';
 import { WhiteBalance } from 'expo-camera/build/Camera.types';
 import { MaterialIcons } from '@expo/vector-icons';
 
-export default function CameraUI({ setIsCameraOpen, hasCameraPermission }) {
+export default function CameraUI({
+	setIsCameraOpen,
+	hasCameraPermission,
+	setPictureURI,
+}) {
 	const [type, setType] = useState(Camera.Constants.Type.back);
 	//inside the camera component, add the ref pointer
 	let camera = useRef();
@@ -25,7 +29,7 @@ export default function CameraUI({ setIsCameraOpen, hasCameraPermission }) {
 		camera
 			.takePictureAsync(options)
 			.then(({ uri }) => {
-				console.log(uri);
+				setPictureURI(uri);
 			})
 			.then(() => {
 				setIsCameraOpen(false);
