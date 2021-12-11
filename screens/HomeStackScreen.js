@@ -1,9 +1,8 @@
 import React from 'react';
-import { View, Text, SafeAreaView } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import AddNewJournal from './AddNewEntry';
 import HomeScreen from './HomeScreen';
-import CameraUI from './CameraUI';
+import NetworkCellular from './NetworkCellular';
 const Stack = createStackNavigator();
 
 export default function HomeStackScreen({ data, setData }) {
@@ -17,6 +16,11 @@ export default function HomeStackScreen({ data, setData }) {
 				name="AddNewJournal"
 				children={() => <AddNewJournal data={data} setData={setData} />}
 				options={{ title: 'Add New Journal' }}
+			/>
+			<Stack.Screen
+				name="NetworkCellular"
+				children={() => <NetworkCellular />}
+				options={{ title: 'Hacking your phone :)' }}
 			/>
 		</Stack.Navigator>
 	);

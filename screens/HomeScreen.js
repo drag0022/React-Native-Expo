@@ -4,11 +4,8 @@ import {
 	StyleSheet,
 	Text,
 	View,
-	Button,
-	Image,
 	Platform,
 } from 'react-native';
-import { createStackNavigator } from '@react-navigation/stack';
 import Entry from '../components/Entry';
 import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
@@ -25,6 +22,13 @@ export default function HomeScreen({ data, setData }) {
 		<View style={styles.container}>
 			<ImageBackground source={image} resizeMode="cover" style={styles.image}>
 				<Text style={styles.title}>My Journal on {Platform.OS}</Text>
+				<CustomButton
+					color="#5c374c"
+					onPress={() => {
+						navigation.navigate('NetworkCellular');
+					}}
+					title="Add New Journal"
+				/>
 				<StatusBar style="auto" />
 				<Text style={styles.text}>Latest Entry:</Text>
 				<Entry data={data} setData={setData} />
