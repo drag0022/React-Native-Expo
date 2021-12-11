@@ -32,7 +32,9 @@
         "supportsTablet": true,
         "NSLocationAlwaysUsageDescription": "We need to display your location on the home screen.",
         "NSCameraUsageDescription": "Allow Journals to use the camera",
-        "NSMicrophoneUsageDescription": "Allow Journals to use the microphone"
+        "NSMicrophoneUsageDescription": "Allow Journals to use the microphone",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "Allow Journals to use your location",
+        "NSLocationWhenInUseUsageDescription": "Allow Journals to use your location"
       }
     }
   }

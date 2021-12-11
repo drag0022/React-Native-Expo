@@ -8,34 +8,46 @@ import {
 	SafeAreaView,
 	ScrollView,
 } from 'react-native';
-import CameraUI from './Camera';
+import CameraUI from './CameraUI';
 import { Camera } from 'expo-camera';
+import * as Location from 'expo-location';
 import CustomButton from '../components/CustomButton';
 export default function AddNewEntry({ navigation }) {
 	const [isCameraOpen, setIsCameraOpen] = useState(false);
+	const [hasLocationPermission, setHasLocationPermission] = useState(false);
+	const [hasCameraPermission, setHasCameraPermission] = useState(false);
+	const [locationData, setLocationData] = useState(undefined);
 
-	const [hasPermission, setHasPermission] = useState(true);
-
-	useEffect(() => {
-		(async () => {
-			const { status } = await Camera.requestCameraPermissionsAsync();
-			setHasPermission(status === 'granted');
-		})();
-		console.log(hasPermission);
+	useEffect(async () => {
+		await getCameraPermission();
 	}, []);
+
+	const getCameraPermission = async () => {
+		const { status } = await Camera.requestCameraPermissionsAsync();
+		setHasCameraPermission(status === 'granted');
+	};
+
+	const getLocationPermission = async () => {
+		let { status } = await Location.requestForegroundPermissionsAsync();
+		setHasLocationPermission(status === 'granted');
+	};
 
 	const handleOpenCamera = () => {
 		setIsCameraOpen(true);
 	};
 
-	const handleGetLocation = () => {};
+	const handleGetLocation = async () => {
+		await getLocationPermission();
+		let location = await Location.getCurrentPositionAsync({ accuracy: 1 });
+		setLocationData(location);
+	};
 
 	return (
 		<SafeAreaView>
 			{isCameraOpen ? (
 				<CameraUI
 					setIsCameraOpen={setIsCameraOpen}
-					hasPermission={hasPermission}
+					hasCameraPermission={hasCameraPermission}
 				/>
 			) : (
 				<SafeAreaView>
@@ -51,13 +63,14 @@ export default function AddNewEntry({ navigation }) {
 							/>
 							<CustomButton
 								onPress={() => {
-									handleOpenCamera();
+									handleGetLocation();
 								}}
-								title="Take a Picture"
+								title="Add Location"
 							/>
+							<Text>{locationData && locationData.coords.latitude}</Text>
 							<CustomButton
 								onPress={() => {
-									handleGetLocation();
+									handleOpenCamera();
 								}}
 								title="Take a Picture"
 							/>
@@ -82,7 +95,7 @@ const styles = StyleSheet.create({
 		padding: 20,
 		backgroundColor: '#d3d3d370',
 		borderRadius: 5,
-		height: 500,
+		height: 600,
 		marginTop: 1,
 		margin: 20,
 		alignContent: 'center',
