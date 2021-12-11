@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import CameraUI from './Camera';
 import { Camera } from 'expo-camera';
+import CustomButton from '../components/CustomButton';
 export default function AddNewEntry({ navigation }) {
 	const [isCameraOpen, setIsCameraOpen] = useState(false);
 
@@ -34,51 +35,70 @@ export default function AddNewEntry({ navigation }) {
 				/>
 			) : (
 				<SafeAreaView>
+					<Text style={styles.heading}>New Entry</Text>
 					<View style={styles.container}>
-						<Text>Enter A Title:</Text>
+						<Text style={styles.text}>Enter A Title:</Text>
 						<TextInput style={styles.title} placeholder="Journal Title..." />
-						<Text>Describe your day:</Text>
+						<Text style={styles.text}>Describe your day:</Text>
 						<TextInput
 							style={styles.textarea}
 							placeholder="Description of journal..."
 						/>
-						<Button
-							title="Take A Picture"
-							onPress={() => {
+						<CustomButton onPress={() => {
 								handleOpenCamera();
 							}}
-						/>
+							title="Take a Picture" />
 					</View>
-					<Button
-						title="Submit Journal"
-						onPress={() => {
+					<CustomButton onPress={() => {
 							console.log('submitting journal');
-						}}
-					/>
+				}} title="Submit Journal" />
 				</SafeAreaView>
 			)}
 		</SafeAreaView>
 	);
 }
 
+
+
 const styles = StyleSheet.create({
 	container: {
-		display: 'flex',
 		flexDirection: 'column',
 		alignContent: 'center',
 		padding: 20,
-		backgroundColor: 'lightgrey',
+		backgroundColor: '#d3d3d370',
+		borderRadius: 5,
+		height: 500,
+		marginTop: 1,
+		margin: 20,
+		alignContent: 'center',
+    borderWidth: 0.2,
+		borderBottomColor:'#5c374c',
+		borderBottomWidth:8,
+	},
+	heading:{
+		paddingTop:0,
+    color: '#5c374c',
+    fontSize: 35,
+    lineHeight: 84,
+    fontWeight: 'bold',
+		marginLeft: 10
 	},
 	title: {
 		height: 50,
 		padding: 10,
 		margin: 20,
-		backgroundColor: '#E2E2E2',
+		backgroundColor: '#FFF',
 	},
 	textarea: {
-		height: 200,
+		height: 180,
 		padding: 10,
 		margin: 20,
-		backgroundColor: '#E2E2E2',
+		backgroundColor: '#FFF',
 	},
+	text:{
+		color: '#5c374c',
+		marginLeft: 18,
+		paddingTop: 25,
+		
+	}
 });
