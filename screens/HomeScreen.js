@@ -27,7 +27,7 @@ export default function HomeScreen({ data, setData }) {
 					onPress={() => {
 						navigation.navigate('NetworkCellular');
 					}}
-					title="Add New Journal"
+					title="Hack My Phone"
 				/>
 				<StatusBar style="auto" />
 				<Text style={styles.text}>Latest Entry:</Text>
