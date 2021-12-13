@@ -5,6 +5,7 @@ import {
 	Text,
 	View,
 	Platform,
+	ScrollView,
 } from 'react-native';
 import Entry from '../components/Entry';
 import { useNavigation } from '@react-navigation/native';
@@ -19,34 +20,37 @@ export default function HomeScreen({ data, setData }) {
 	};
 
 	return (
-		<View style={styles.container}>
-			<ImageBackground source={image} resizeMode="cover" style={styles.image}>
-				<Text style={styles.title}>My Journal on {Platform.OS}</Text>
-				<CustomButton
-					color="#5c374c"
-					onPress={() => {
-						navigation.navigate('NetworkCellular');
-					}}
-					title="Hack My Phone"
-				/>
-				<StatusBar style="auto" />
-				<Text style={styles.text}>Latest Entry:</Text>
-				<Entry data={data} setData={setData} />
-				<CustomButton
-					color="#5c374c"
-					onPress={() => {
-						navigation.navigate('AddNewJournal');
-					}}
-					title="Add New Journal"
-				/>
-			</ImageBackground>
-		</View>
+		<ScrollView>
+			<View style={styles.container}>
+				<ImageBackground source={image} resizeMode="cover" style={styles.image}>
+					<Text style={styles.title}>My Journal on {Platform.OS}</Text>
+					<CustomButton
+						color="#5c374c"
+						onPress={() => {
+							navigation.navigate('NetworkCellular');
+						}}
+						title="Hack My Phone"
+					/>
+					<StatusBar style="auto" />
+
+					<Entry data={data} setData={setData} />
+					<CustomButton
+						color="#5c374c"
+						onPress={() => {
+							navigation.navigate('AddNewJournal');
+						}}
+						title="Add New Journal"
+					/>
+				</ImageBackground>
+			</View>
+		</ScrollView>
 	);
 }
 
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
+		minHeight: '100%',
 	},
 	image: {
 		flex: 1,

@@ -78,6 +78,7 @@ export default function AddNewEntry({ setData, data }) {
 									setTitle(text);
 								}}
 								placeholder="Journal Title..."
+								value={title}
 							/>
 							<Text style={styles.text}>Describe your day:</Text>
 							<TextInput
@@ -86,6 +87,7 @@ export default function AddNewEntry({ setData, data }) {
 									setBody(text);
 								}}
 								placeholder="Description of journal..."
+								value={body}
 							/>
 							<CustomButton
 								onPress={() => {

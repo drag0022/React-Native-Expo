@@ -6,10 +6,9 @@ import JournalEntries from './screens/JournalEntries';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
-import initialData from './data/data';
 const Tab = createBottomTabNavigator();
 export default function App() {
-	const [data, setData] = useState(initialData);
+	const [data, setData] = useState([]);
 
 	return (
 		<NavigationContainer>
