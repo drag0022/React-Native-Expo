@@ -18,6 +18,8 @@ export default function AddNewEntry({ setData, data }) {
 	const [isCameraOpen, setIsCameraOpen] = useState(false);
 	const [hasLocationPermission, setHasLocationPermission] = useState(false);
 	const [hasCameraPermission, setHasCameraPermission] = useState(false);
+	const [title, setTitle] = useState('');
+	const [body, setBody] = useState('');
 	const [locationData, setLocationData] = useState(undefined);
 	const [pictureURI, setPictureURI] = useState('');
 	const navigation = useNavigation();
@@ -48,8 +50,8 @@ export default function AddNewEntry({ setData, data }) {
 	const handleSubmitJournal = () => {
 		const journal = {
 			id: Date.now(),
-			title: 'title',
-			body: 'body',
+			title: title,
+			body: body,
 			image: pictureURI,
 			location: locationData,
 		};
@@ -70,11 +72,22 @@ export default function AddNewEntry({ setData, data }) {
 						<Text style={styles.heading}>New Entry</Text>
 						<View style={styles.container}>
 							<Text style={styles.text}>Enter A Title:</Text>
-							<TextInput style={styles.title} placeholder="Journal Title..." />
+							<TextInput
+								style={styles.title}
+								onChangeText={(text) => {
+									setTitle(text);
+								}}
+								placeholder="Journal Title..."
+								value={title}
+							/>
 							<Text style={styles.text}>Describe your day:</Text>
 							<TextInput
 								style={styles.textarea}
+								onChangeText={(text) => {
+									setBody(text);
+								}}
 								placeholder="Description of journal..."
+								value={body}
 							/>
 							<CustomButton
 								onPress={() => {
