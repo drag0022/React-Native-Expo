@@ -29,27 +29,16 @@ export default function NetworkCellular() {
 	}, []);
 
 	return !isShowingLoader ? (
-		<SafeAreaView style={styles.safearea} >
-			<View >
-				<Card containerStyle={{
-					backgroundColor: '#ffffff', shadowColor: "rgba(0, 0, 0, .5)",
-					shadowOffset: { width: 4, height: 8 },
-					shadowOpacity: 0.25,
-					alignSelf:'center',
-					shadowRadius: 12,
-					borderBottomColor: '#A10582',
-					borderBottomWidth: 8,
-					borderRadius:10}}
-				>
-				<Card.Title style={{color: '#A10582'}}>Phone info</Card.Title>
-					<Card.Divider/>
-					<Text style={{marginBottom: 10}}>
+		<SafeAreaView style={styles.safeArea} >
+			<View style={styles.phonecard}>
+				<Card title="Phone Information">
+					<Text style={styles.text2}>
 						{voip
 							? 'Your Phone can make phone calls.'
 							: 'Your phone cannot make phone calls. You must be using a simulator'}
 					</Text>
-					<Text style={{marginBottom: 10}}>Your Carrier Is: {carrier}</Text>
-					<Text style={{marginBottom: 10}}>
+					<Text style={styles.text2}>Your Carrier Is: {carrier}</Text>
+					<Text style={styles.text2}>
 						Your phone is capable of {generation === 0 ? 'Simulator' : generation}{' '}
 						connectivity. WOW!
 					</Text>
@@ -73,7 +62,7 @@ export default function NetworkCellular() {
 }
 
 const styles = StyleSheet.create({
-	container:{
+	safeArea:{
 		flexDirection: 'column',
 		alignContent: 'center',
 		padding: 20,
@@ -82,16 +71,35 @@ const styles = StyleSheet.create({
 		height: 700,
 		margin: 10,
 		alignContent: 'center',
+		borderWidth: 0.2,
+		borderBottomColor: '#A10582',
+		borderBottomWidth: 8,
 	},
-	safearea:{
+	container:{
 		flex: 1,
 			alignItems: 'center',
 			justifyContent: 'center',
 			paddingTop: 40,
 			backgroundColor: '#ecf0f1',
 			borderRadius:20,
+			shadowColor: "rgba(1, 1, 0, .5)",
+			shadowOffset: { width: 4, height: 8 },
+			shadowOpacity: 0.25,
+			shadowRadius: 12,
 			height:500,
 	},
+	phonecard:{
+	
+			alignItems: 'center',
+			justifyContent: 'center',
+			paddingTop: 40,
+			backgroundColor: 'red',
+			borderRadius:20,
+			shadowColor: "rgba(1, 1, 0, .5)",
+			shadowOffset: { width: 4, height: 8 },
+			shadowOpacity: 0.25,
+			shadowRadius: 12,
+			height:300},
 	text: {
 		paddingTop: 15,
 		alignItems: 'center',
@@ -100,9 +108,23 @@ const styles = StyleSheet.create({
 		color: '#A10582',
 		marginLeft: 10,
 	},
-phonecard:{
-		backgroundColor:'red',
-		height:400
+	text2: {
+		paddingTop: 45,
+		alignContent:'center',
+		alignItems: 'center',
+		fontWeight: '300',
+		fontSize: 25,
+		marginLeft: 10,
+		color:'#A10582'
+	},
+	card:{
+		borderRadius:20,
+		shadowColor: "rgba(1, 1, 0, .5)",
+    shadowOffset: { width: 4, height: 8 },
+    shadowOpacity: 0.25,
+    shadowRadius: 12,
+		height:500,
+		color:'green'
 	}
-	
+
 });
