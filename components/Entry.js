@@ -17,6 +17,7 @@ export default function Entry({ data }) {
 			) : (
 				<Text>No Image Available</Text>
 			)}
+			<Text>City: {data[data.length - 1].city}</Text>
 			{data[data.length - 1].location ? (
 				<Text>
 					Location: Latitude: {data[data.length - 1].location.coords.latitude}{' '}

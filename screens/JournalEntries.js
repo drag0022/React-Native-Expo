@@ -23,6 +23,9 @@ export default function JournalEntries({ data, setData }) {
 						<Text>
 							Body: {item.item.body ? item.item.body : 'no body available'}
 						</Text>
+						<Text>
+							City: {item.item.city ? item.item.city : 'no city available'}
+						</Text>
 						{item.item.location ? (
 							<Text>
 								Location: Latitude: {item.item.location.coords.latitude}{' '}
