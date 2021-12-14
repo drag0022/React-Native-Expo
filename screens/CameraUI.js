@@ -56,14 +56,14 @@ export default function CameraUI({
 	return (
 		hasCameraPermission && (
 			<View style={styles.container}>
-				<View style={styles.btnBack}>
+				{/* <View style={styles.btnBack}>
 					<Button
 						title="Back"
 						onPress={() => {
 							setIsCameraOpen(false);
 						}}
 					/>
-				</View>
+				</View> */}
 				<Text style={styles.title}>Take a picture</Text>
 				<View>
 					<Camera
@@ -120,12 +120,7 @@ const styles = StyleSheet.create({
 	},
 	camera: {
 		width: 300,
-		height: 300,
-		marginLeft: 20,
-		marginRight: 10,
-	},
-	btnBack: {
-		alignSelf: 'flex-start',
+		height: 400,
 	},
 	btnFlip: {
 		color: '#ffffff',

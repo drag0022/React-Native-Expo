@@ -9,8 +9,9 @@ export default function HomeStackScreen({ data, setData }) {
 	return (
 		<Stack.Navigator>
 			<Stack.Screen
-				name="Home"
+				name="HomeStack"
 				children={() => <HomeScreen data={data} setData={setData} />}
+				options={{ title: 'Journals App' }}
 			/>
 			<Stack.Screen
 				name="AddNewJournal"
