@@ -29,7 +29,7 @@ export default function NetworkCellular() {
 	}, []);
 
 	return !isShowingLoader ? (
-		<SafeAreaView style={styles.safearea} >
+		<SafeAreaView style={styles.loader} >
 			<View >
 				<Card containerStyle={{
 					backgroundColor: '#ffffff', shadowColor: "rgba(0, 0, 0, .5)",
@@ -60,11 +60,7 @@ export default function NetworkCellular() {
 		<View style={styles.container} >
 			<Text style={styles.text}>Hacking your phone...</Text>
 			<LottieView
-          style={{
-            width: 400,
-            height: 400,
-            color: '#5c374c',
-          }}
+          
           source={require('../assets/lf30_editor_fvdnvkqk.json')}
 					autoPlay loop
         />
@@ -74,35 +70,28 @@ export default function NetworkCellular() {
 
 const styles = StyleSheet.create({
 	container:{
-		flexDirection: 'column',
-		alignContent: 'center',
+		flex: 1,
 		padding: 20,
-		backgroundColor: '#d3d3d370',
 		borderRadius: 5,
 		height: 700,
 		margin: 10,
-		alignContent: 'center',
+		
 	},
-	safearea:{
+loader:{
 		flex: 1,
-			alignItems: 'center',
-			justifyContent: 'center',
-			paddingTop: 40,
-			backgroundColor: '#ecf0f1',
-			borderRadius:20,
-			height:500,
+		alignItems: 'center',
+		justifyContent: 'center',
+		paddingTop: 40,
+		backgroundColor: '#ecf0f1',
+		borderRadius:20,
+		height:500,
 	},
 	text: {
-		paddingTop: 15,
-		alignItems: 'center',
+		paddingTop:25,
 		fontWeight: '700',
 		fontSize: 20,
 		color: '#A10582',
-		marginLeft: 10,
-	},
-phonecard:{
-		backgroundColor:'red',
-		height:400
-	}
+		alignSelf: 'center'
 	
+	},
 });

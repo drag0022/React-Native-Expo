@@ -3,9 +3,7 @@ import { StyleSheet, Text, View, TextInput, Button, Image } from 'react-native';
 export default function Entry({ data }) {
 	return data.length ? (
 		<View style={styles.container}>
-			<Text style={styles.text}>Latest Entry:</Text>
-			<Text style={styles.text}>Title: {`${data[data.length - 1].title}`}</Text>
-			<Text style={styles.text}>Body: {`${data[data.length - 1].body}`}</Text>
+			<Text style={styles.title}>Latest Entry:</Text>
 			<Text style={styles.text}>Picture: </Text>
 			{data[data.length - 1].image ? (
 				<Image
@@ -15,21 +13,27 @@ export default function Entry({ data }) {
 					}}
 				/>
 			) : (
-				<Text>No Image Available</Text>
+				<Text style={styles.text}>No Image Available</Text>
 			)}
+
+			<Text style={styles.text}>Title: {`${data[data.length - 1].title}`}</Text>
+			<Text style={styles.text}>Body: {`${data[data.length - 1].body}`}</Text>
+			
+
 			<Text>City: {data[data.length - 1].city}</Text>
+
 			{data[data.length - 1].location ? (
-				<Text>
+				<Text style={styles.text}>
 					Location: Latitude: {data[data.length - 1].location.coords.latitude}{' '}
 					Longitude: {data[data.length - 1].location.coords.longitude} Speed:{' '}
 					{data[data.length - 1].location.coords.speed}
 				</Text>
 			) : (
-				<Text>No Location Available</Text>
+				<Text style={styles.text}>No Location Available</Text>
 			)}
 		</View>
 	) : (
-		<Text>No Entries Yet</Text>
+		<Text style={styles.text}>No Entries Yet</Text>
 	);
 }
 
@@ -40,7 +44,7 @@ const styles = StyleSheet.create({
 		padding: 20,
 		backgroundColor: '#d3d3d370',
 		borderRadius: 5,
-		height: 400,
+		height: 600,
 		margin: 10,
 		alignContent: 'center',
 		borderWidth: 0.2,
@@ -48,13 +52,12 @@ const styles = StyleSheet.create({
 		borderBottomWidth: 8,
 	},
 	title: {
-		height: 50,
-		padding: 10,
-		margin: 20,
-		backgroundColor: '#E2E2E2',
+		alignItems: 'center',
+		fontWeight: '500',
+		fontSize: 25,
+		color: '#5c374c',
 	},
 	text: {
-		paddingTop: 3,
 		alignItems: 'center',
 		fontWeight: '500',
 		fontSize: 15,
@@ -71,7 +74,9 @@ const styles = StyleSheet.create({
 		backgroundColor: '#E2E2E2',
 	},
 	image: {
-		height: 50,
-		width: 50,
+		height: 150,
+		width: 250,
+		alignSelf:'center',
+		borderRadius:5
 	},
 });
