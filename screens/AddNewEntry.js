@@ -14,6 +14,7 @@ import * as Location from 'expo-location';
 import CustomButton from '../components/CustomButton';
 import LocationUI from '../components/LocationUI';
 import { useNavigation } from '@react-navigation/native';
+import { setStatusBarNetworkActivityIndicatorVisible } from 'expo-status-bar';
 export default function AddNewEntry({ setData, data }) {
 	const [isCameraOpen, setIsCameraOpen] = useState(false);
 	const [hasLocationPermission, setHasLocationPermission] = useState(false);
@@ -21,6 +22,7 @@ export default function AddNewEntry({ setData, data }) {
 	const [title, setTitle] = useState('');
 	const [body, setBody] = useState('');
 	const [locationData, setLocationData] = useState(undefined);
+	const [city, setCity] = useState('');
 	const [pictureURI, setPictureURI] = useState('');
 	const navigation = useNavigation();
 	useEffect(async () => {
@@ -41,9 +43,25 @@ export default function AddNewEntry({ setData, data }) {
 		setIsCameraOpen(true);
 	};
 
+	const convertCoordsToCity = async (latitude, longitude) => {
+		const KEY = '?apiKey=GoSI2hPI3gCWq2Xf78Zfl6eOjO0EWYUdiSx6DB78ybE';
+		const URL =
+			'https://reverse.geocoder.ls.hereapi.com/6.2/reversegeocode.json';
+		const MODE = '&mode=retrieveAddresses';
+		const AREA = '250';
+
+		const COORDS = `&prox=${latitude},${longitude},${AREA}`;
+
+		const resp = await fetch(`${URL}${KEY}${MODE}${COORDS}`);
+		const data = await resp.json();
+		setCity(data.Response.View[0].Result[0].Location.Address.Label);
+	};
 	const handleGetLocation = async () => {
 		await getLocationPermission();
 		let location = await Location.getCurrentPositionAsync({ accuracy: 1 });
+
+		convertCoordsToCity(location.coords.latitude, location.coords.longitude);
+
 		setLocationData(location);
 	};
 
@@ -53,6 +71,7 @@ export default function AddNewEntry({ setData, data }) {
 			title: title,
 			body: body,
 			image: pictureURI,
+			city: city,
 			location: locationData,
 		};
 		setData([...data, journal]);
@@ -96,7 +115,9 @@ export default function AddNewEntry({ setData, data }) {
 								title="Add Location"
 							/>
 							<Text>
-								{locationData && <LocationUI locationData={locationData} />}
+								{locationData && (
+									<LocationUI locationData={locationData} city={city} />
+								)}
 							</Text>
 							<CustomButton
 								onPress={() => {
