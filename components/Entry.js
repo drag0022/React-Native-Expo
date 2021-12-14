@@ -15,9 +15,13 @@ export default function Entry({ data }) {
 			) : (
 				<Text style={styles.text}>No Image Available</Text>
 			)}
+
 			<Text style={styles.text}>Title: {`${data[data.length - 1].title}`}</Text>
 			<Text style={styles.text}>Body: {`${data[data.length - 1].body}`}</Text>
 			
+
+			<Text>City: {data[data.length - 1].city}</Text>
+
 			{data[data.length - 1].location ? (
 				<Text style={styles.text}>
 					Location: Latitude: {data[data.length - 1].location.coords.latitude}{' '}
