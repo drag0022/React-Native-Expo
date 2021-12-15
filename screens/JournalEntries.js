@@ -1,12 +1,5 @@
 import React, { useEffect } from 'react';
-import {
-	StyleSheet,
-	Text,
-	View,
-	SafeAreaView,
-	FlatList,
-	Image,
-} from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, FlatList } from 'react-native';
 import { Card } from 'react-native-elements';
 
 export default function JournalEntries({ data, setData }) {

@@ -15,26 +15,38 @@
     },
     "assetBundlePatterns": [
       "**/*"
-    ]
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
+    ],
+    "description": "",
+    "ios": {
+      "bundleIdentifier": "com.eduardSherefat.reactNative",
+      "buildNumber": "1.0.0"
     },
     "android": {
-      "permissions": ["ACCESS_COARSE_LOCATION", "ACCESS_FINE_LOCATION"],
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
-    },
-    "ios": {
-      "infoPlist": {
-        "supportsTablet": true,
-        "NSLocationAlwaysUsageDescription": "We need to display your location on the home screen.",
-        "NSCameraUsageDescription": "Allow Journals to use the camera",
-        "NSMicrophoneUsageDescription": "Allow Journals to use the microphone",
-        "NSLocationAlwaysAndWhenInUseUsageDescription": "Allow Journals to use your location",
-        "NSLocationWhenInUseUsageDescription": "Allow Journals to use your location"
-      }
+      "package": "com.eduardSherefat.reactNative",
+      "versionCode": 1
+    }
+  },
+  "web": {
+    "favicon": "./assets/favicon.png"
+  },
+  "android": {
+    "permissions": [
+      "ACCESS_COARSE_LOCATION",
+      "ACCESS_FINE_LOCATION"
+    ],
+    "adaptiveIcon": {
+      "foregroundImage": "./assets/adaptive-icon.png",
+      "backgroundColor": "#FFFFFF"
+    }
+  },
+  "ios": {
+    "infoPlist": {
+      "supportsTablet": true,
+      "NSLocationAlwaysUsageDescription": "We need to display your location on the home screen.",
+      "NSCameraUsageDescription": "Allow Journals to use the camera",
+      "NSMicrophoneUsageDescription": "Allow Journals to use the microphone",
+      "NSLocationAlwaysAndWhenInUseUsageDescription": "Allow Journals to use your location",
+      "NSLocationWhenInUseUsageDescription": "Allow Journals to use your location"
     }
   }
+}

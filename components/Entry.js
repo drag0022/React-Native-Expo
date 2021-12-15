@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, Button, Image } from 'react-native';
 export default function Entry({ data }) {
+	//component displaying the latest entry on the home page
 	return data.length ? (
 		<View style={styles.container}>
 			<Text style={styles.title}>Latest Entry:</Text>
@@ -18,7 +19,6 @@ export default function Entry({ data }) {
 
 			<Text style={styles.text}>Title: {`${data[data.length - 1].title}`}</Text>
 			<Text style={styles.text}>Body: {`${data[data.length - 1].body}`}</Text>
-			
 
 			<Text>City: {data[data.length - 1].city}</Text>
 
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
 	image: {
 		height: 150,
 		width: 250,
-		alignSelf:'center',
-		borderRadius:5
+		alignSelf: 'center',
+		borderRadius: 5,
 	},
 });

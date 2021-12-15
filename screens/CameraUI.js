@@ -1,16 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import {
-	StyleSheet,
-	Text,
-	View,
-	Pressable,
-	Button,
-	border,
-} from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { Camera } from 'expo-camera';
 import CustomButton from '../components/CustomButton';
-import { Center, InputLeftAddon } from 'native-base';
-import { WhiteBalance } from 'expo-camera/build/Camera.types';
+
 import { MaterialIcons } from '@expo/vector-icons';
 
 export default function CameraUI({
@@ -56,14 +48,6 @@ export default function CameraUI({
 	return (
 		hasCameraPermission && (
 			<View style={styles.container}>
-				{/* <View style={styles.btnBack}>
-					<Button
-						title="Back"
-						onPress={() => {
-							setIsCameraOpen(false);
-						}}
-					/>
-				</View> */}
 				<Text style={styles.title}>Take a picture</Text>
 				<View>
 					<Camera
@@ -132,7 +116,7 @@ const styles = StyleSheet.create({
 	},
 	title: {
 		marginLeft: 20,
-		paddingTop: 0,
+		paddingTop: 10,
 		color: '#5c374c',
 		fontSize: 30,
 		lineHeight: 54,

@@ -1,10 +1,9 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
 	StyleSheet,
 	Text,
 	View,
 	TextInput,
-	Button,
 	SafeAreaView,
 	ScrollView,
 } from 'react-native';
@@ -14,7 +13,6 @@ import * as Location from 'expo-location';
 import CustomButton from '../components/CustomButton';
 import LocationUI from '../components/LocationUI';
 import { useNavigation } from '@react-navigation/native';
-import { setStatusBarNetworkActivityIndicatorVisible } from 'expo-status-bar';
 export default function AddNewEntry({ setData, data }) {
 	const [isCameraOpen, setIsCameraOpen] = useState(false);
 	const [hasLocationPermission, setHasLocationPermission] = useState(false);
@@ -25,6 +23,8 @@ export default function AddNewEntry({ setData, data }) {
 	const [city, setCity] = useState('');
 	const [pictureURI, setPictureURI] = useState('');
 	const navigation = useNavigation();
+
+	//get camera permissions as soon as user lands on page
 	useEffect(async () => {
 		await getCameraPermission();
 	}, []);
@@ -43,6 +43,7 @@ export default function AddNewEntry({ setData, data }) {
 		setIsCameraOpen(true);
 	};
 
+	//take in lat and long and convert to city (address) by calling hereAPI
 	const convertCoordsToCity = async (latitude, longitude) => {
 		const KEY = '?apiKey=GoSI2hPI3gCWq2Xf78Zfl6eOjO0EWYUdiSx6DB78ybE';
 		const URL =
@@ -54,6 +55,7 @@ export default function AddNewEntry({ setData, data }) {
 
 		const resp = await fetch(`${URL}${KEY}${MODE}${COORDS}`);
 		const data = await resp.json();
+		//address string from response object
 		setCity(data.Response.View[0].Result[0].Location.Address.Label);
 	};
 	const handleGetLocation = async () => {
@@ -65,6 +67,7 @@ export default function AddNewEntry({ setData, data }) {
 		setLocationData(location);
 	};
 
+	//save into state data
 	const handleSubmitJournal = () => {
 		const journal = {
 			id: Date.now(),
