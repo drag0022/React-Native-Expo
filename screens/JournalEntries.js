@@ -46,23 +46,16 @@ export default function JournalEntries({ data, setData }) {
 							<Text style={styles.text}>
 								Body: {item.item.body ? item.item.body : 'no body available'}
 							</Text>
-							<Text>ID: {item.item.id ? item.item.id : 'no id available'}</Text>
-							<Text>
-								Title:{' '}
-								{item.item.title ? item.item.title : 'no title available'}
-							</Text>
-							<Text>
-								Body: {item.item.body ? item.item.body : 'no body available'}
-							</Text>
-							<Text>
-								City: {item.item.city ? item.item.city : 'no city available'}
-							</Text>
+
 							{item.item.location ? (
-								<Text style={styles.text}>
-									Location: Latitude: {item.item.location.coords.latitude}{' '}
-									Longitude: {item.item.location.coords.longitude} Speed:{' '}
-									{item.item.location.coords.speed}
-								</Text>
+								<View>
+									<Text style={styles.text}>
+										Location Data: Latitude:{' '}
+										{item.item.location.coords.latitude} Longitude:{' '}
+										{item.item.location.coords.longitude} Speed:{' '}
+										{item.item.location.coords.speed}
+									</Text>
+								</View>
 							) : (
 								<Text style={styles.text}>
 									no location information available
