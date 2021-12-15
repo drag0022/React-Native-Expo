@@ -1,6 +1,5 @@
-import { StatusBar } from 'expo-status-bar';
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet } from 'react-native';
 import HomeStackScreen from './screens/HomeStackScreen';
 import JournalEntries from './screens/JournalEntries';
 import { NavigationContainer } from '@react-navigation/native';

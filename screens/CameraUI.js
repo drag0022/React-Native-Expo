@@ -1,16 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import {
-	StyleSheet,
-	Text,
-	View,
-	Pressable,
-	Button,
-	border,
-} from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import { Camera } from 'expo-camera';
 import CustomButton from '../components/CustomButton';
-import { Center, InputLeftAddon } from 'native-base';
-import { WhiteBalance } from 'expo-camera/build/Camera.types';
+
 import { MaterialIcons } from '@expo/vector-icons';
 
 export default function CameraUI({
@@ -55,50 +47,44 @@ export default function CameraUI({
 
 	return (
 		hasCameraPermission && (
-			<View style={styles.container}>
-				{/* <View style={styles.btnBack}>
-					<Button
-						title="Back"
-						onPress={() => {
-							setIsCameraOpen(false);
-						}}
-					/>
-				</View> */}
-				<Text style={styles.title}>Take a picture</Text>
-				<View>
-					<Camera
-						style={styles.camera}
-						type={type}
-						ref={(r) => {
-							camera = r;
-						}}
-					/>
+			<ScrollView>
+				<View style={styles.container}>
+					<Text style={styles.title}>Take a picture</Text>
+					<View>
+						<Camera
+							style={styles.camera}
+							type={type}
+							ref={(r) => {
+								camera = r;
+							}}
+						/>
+					</View>
+					<View style={styles.btnFlip}>
+						<MaterialIcons.Button
+							name="flip-camera-android"
+							backgroundColor="#c197ae"
+							onPress={() => {
+								setType(
+									type === Camera.Constants.Type.back
+										? Camera.Constants.Type.front
+										: Camera.Constants.Type.back
+								);
+							}}
+						>
+							Flip
+						</MaterialIcons.Button>
+					</View>
+					<View>
+						<CustomButton
+							color="#5c374c"
+							onPress={() => {
+								takePicture();
+							}}
+							title="Take Picture"
+						/>
+					</View>
 				</View>
-				<View style={styles.btnFlip}>
-					<MaterialIcons.Button
-						name="flip-camera-android"
-						backgroundColor="#c197ae"
-						onPress={() => {
-							setType(
-								type === Camera.Constants.Type.back
-									? Camera.Constants.Type.front
-									: Camera.Constants.Type.back
-							);
-						}}
-					>
-						Flip
-					</MaterialIcons.Button>
-				</View>
-				<View>
-					<CustomButton
-						color="#5c374c"
-						onPress={() => {
-							takePicture();
-						}}
-						title="Take Picture"
-					/>
-				</View>
-			</View>
+			</ScrollView>
 		)
 	);
 }
@@ -110,8 +96,8 @@ const styles = StyleSheet.create({
 		padding: 20,
 		backgroundColor: '#d3d3d370',
 		borderRadius: 5,
-		height: 600,
-		marginTop: 1,
+		height: 650,
+		marginTop: 30,
 		margin: 20,
 		alignContent: 'center',
 		borderWidth: 0.2,
@@ -132,7 +118,7 @@ const styles = StyleSheet.create({
 	},
 	title: {
 		marginLeft: 20,
-		paddingTop: 0,
+		paddingTop: 5,
 		color: '#5c374c',
 		fontSize: 30,
 		lineHeight: 54,

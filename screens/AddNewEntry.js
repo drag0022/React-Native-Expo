@@ -1,12 +1,12 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
 	StyleSheet,
 	Text,
 	View,
 	TextInput,
-	Button,
 	SafeAreaView,
 	ScrollView,
+	KeyboardAvoidingView,
 } from 'react-native';
 import CameraUI from './CameraUI';
 import { Camera } from 'expo-camera';
@@ -14,7 +14,6 @@ import * as Location from 'expo-location';
 import CustomButton from '../components/CustomButton';
 import LocationUI from '../components/LocationUI';
 import { useNavigation } from '@react-navigation/native';
-import { setStatusBarNetworkActivityIndicatorVisible } from 'expo-status-bar';
 export default function AddNewEntry({ setData, data }) {
 	const [isCameraOpen, setIsCameraOpen] = useState(false);
 	const [hasLocationPermission, setHasLocationPermission] = useState(false);
@@ -25,6 +24,8 @@ export default function AddNewEntry({ setData, data }) {
 	const [city, setCity] = useState('');
 	const [pictureURI, setPictureURI] = useState('');
 	const navigation = useNavigation();
+
+	//get camera permissions as soon as user lands on page
 	useEffect(async () => {
 		await getCameraPermission();
 	}, []);
@@ -43,6 +44,7 @@ export default function AddNewEntry({ setData, data }) {
 		setIsCameraOpen(true);
 	};
 
+	//take in lat and long and convert to city (address) by calling hereAPI
 	const convertCoordsToCity = async (latitude, longitude) => {
 		const KEY = '?apiKey=GoSI2hPI3gCWq2Xf78Zfl6eOjO0EWYUdiSx6DB78ybE';
 		const URL =
@@ -54,6 +56,7 @@ export default function AddNewEntry({ setData, data }) {
 
 		const resp = await fetch(`${URL}${KEY}${MODE}${COORDS}`);
 		const data = await resp.json();
+		//address string from response object
 		setCity(data.Response.View[0].Result[0].Location.Address.Label);
 	};
 	const handleGetLocation = async () => {
@@ -65,6 +68,7 @@ export default function AddNewEntry({ setData, data }) {
 		setLocationData(location);
 	};
 
+	//save into state data
 	const handleSubmitJournal = () => {
 		const journal = {
 			id: Date.now(),
@@ -87,52 +91,56 @@ export default function AddNewEntry({ setData, data }) {
 				/>
 			) : (
 				<SafeAreaView>
-					<ScrollView>
-						<Text style={styles.heading}>New Entry</Text>
-						<View style={styles.container}>
-							<Text style={styles.text}>Enter A Title:</Text>
-							<TextInput
-								style={styles.title}
-								onChangeText={(text) => {
-									setTitle(text);
-								}}
-								placeholder="Journal Title..."
-								value={title}
-							/>
-							<Text style={styles.text}>Describe your day:</Text>
-							<TextInput
-								style={styles.textarea}
-								onChangeText={(text) => {
-									setBody(text);
-								}}
-								placeholder="Description of journal..."
-								value={body}
-							/>
+					<KeyboardAvoidingView
+						behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+					>
+						<ScrollView>
+							<Text style={styles.heading}>New Entry</Text>
+							<View style={styles.container}>
+								<Text style={styles.text}>Enter A Title:</Text>
+								<TextInput
+									style={styles.title}
+									onChangeText={(text) => {
+										setTitle(text);
+									}}
+									placeholder="Journal Title..."
+									value={title}
+								/>
+								<Text style={styles.text}>Describe your day:</Text>
+								<TextInput
+									style={styles.textarea}
+									onChangeText={(text) => {
+										setBody(text);
+									}}
+									placeholder="Description of journal..."
+									value={body}
+								/>
+								<CustomButton
+									onPress={() => {
+										handleGetLocation();
+									}}
+									title="Add Location"
+								/>
+								<Text>
+									{locationData && (
+										<LocationUI locationData={locationData} city={city} />
+									)}
+								</Text>
+								<CustomButton
+									onPress={() => {
+										handleOpenCamera();
+									}}
+									title="Take a Picture"
+								/>
+							</View>
 							<CustomButton
 								onPress={() => {
-									handleGetLocation();
+									handleSubmitJournal();
 								}}
-								title="Add Location"
+								title="Submit Journal"
 							/>
-							<Text>
-								{locationData && (
-									<LocationUI locationData={locationData} city={city} />
-								)}
-							</Text>
-							<CustomButton
-								onPress={() => {
-									handleOpenCamera();
-								}}
-								title="Take a Picture"
-							/>
-						</View>
-						<CustomButton
-							onPress={() => {
-								handleSubmitJournal();
-							}}
-							title="Submit Journal"
-						/>
-					</ScrollView>
+						</ScrollView>
+					</KeyboardAvoidingView>
 				</SafeAreaView>
 			)}
 		</SafeAreaView>
