@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
-import { StyleSheet, Text, View, SafeAreaView, FlatList } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, FlatList, Dimensions } from 'react-native';
 import { Card } from 'react-native-elements';
+const { width } = Dimensions.get('window')
 
 export default function JournalEntries({ data, setData }) {
 	console.log({ data });
@@ -21,6 +22,7 @@ export default function JournalEntries({ data, setData }) {
 								borderBottomColor: '#A10582',
 								borderBottomWidth: 8,
 								borderRadius: 10,
+								width
 							}}
 						>
 							<Card.Title style={{ color: '#A10582' }}>
@@ -74,6 +76,7 @@ const styles = StyleSheet.create({
 	text: {
 		color: '#A10582',
 		marginTop: 5,
+	
 	},
 
 	image: {

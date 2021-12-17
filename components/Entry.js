@@ -20,7 +20,7 @@ export default function Entry({ data }) {
 			<Text style={styles.text}>Title: {`${data[data.length - 1].title}`}</Text>
 			<Text style={styles.text}>Body: {`${data[data.length - 1].body}`}</Text>
 
-			<Text>City: {data[data.length - 1].city}</Text>
+			<Text style={styles.text}>City: {data[data.length - 1].city}</Text>
 
 			{data[data.length - 1].location ? (
 				<Text style={styles.text}>
@@ -40,13 +40,12 @@ export default function Entry({ data }) {
 const styles = StyleSheet.create({
 	container: {
 		flexDirection: 'column',
-		alignContent: 'center',
 		padding: 20,
 		backgroundColor: '#d3d3d370',
 		borderRadius: 5,
-		height: 600,
+		height: 'auto',
 		margin: 10,
-		alignContent: 'center',
+		alignSelf:'center',
 		borderWidth: 0.2,
 		borderBottomColor: '#5c374c',
 		borderBottomWidth: 8,
@@ -58,13 +57,14 @@ const styles = StyleSheet.create({
 		color: '#5c374c',
 	},
 	text: {
-		alignItems: 'center',
+		alignSelf: 'center',
 		fontWeight: '500',
 		fontSize: 15,
 		color: '#5c374c',
 		paddingVertical: 10,
 		paddingHorizontal: 10,
-		margin: 10,
+		display:'flex',
+		justifyContent:'flex-start',
 		borderRadius: 15,
 	},
 	textarea: {

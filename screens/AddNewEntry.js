@@ -121,11 +121,11 @@ export default function AddNewEntry({ setData, data }) {
 									}}
 									title="Add Location"
 								/>
-								<Text>
+								<Text style={styles.text}>
 									{locationData && (
 										<LocationUI locationData={locationData} city={city} />
 									)}
-								</Text>
+								</Text >
 								<CustomButton
 									onPress={() => {
 										handleOpenCamera();
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
 		padding: 20,
 		backgroundColor: '#d3d3d370',
 		borderRadius: 5,
-		height: 600,
+		height: 'auto',
 		marginTop: 1,
 		margin: 20,
 		alignContent: 'center',
@@ -185,6 +185,6 @@ const styles = StyleSheet.create({
 	text: {
 		color: '#5c374c',
 		marginLeft: 18,
-		paddingTop: 25,
+		paddingTop: 5,
 	},
 });
