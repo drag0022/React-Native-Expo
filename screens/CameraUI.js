@@ -105,7 +105,8 @@ const styles = StyleSheet.create({
 		borderBottomWidth: 8,
 	},
 	camera: {
-		width: 300,
+		alignSelf:'center',
+		width: 250,
 		height: 400,
 	},
 	btnFlip: {

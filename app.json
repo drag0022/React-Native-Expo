@@ -16,7 +16,7 @@
     "assetBundlePatterns": [
       "**/*"
     ],
-    "description": "",
+    "description": "Final project developed and designed by Eduard and Sherefat",
     "ios": {
       "bundleIdentifier": "com.eduardSherefat.reactNative",
       "buildNumber": "1.0.0"

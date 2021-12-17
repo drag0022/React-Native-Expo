@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import LottieView from 'lottie-react-native';
-import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, ActivityIndicator, } from 'react-native';
 import * as Cellular from 'expo-cellular';
 import { Card } from 'react-native-elements';
 
@@ -52,8 +52,10 @@ export default function NetworkCellular() {
 			</View>
 		</SafeAreaView>
 	) : (
+
 		<View style={styles.container}>
-			<Text style={styles.text}>Hacking your phone...</Text>
+			{/*<ActivityIndicator size="large" />*/}
+			<Text style={styles.text}>Hacking your phone...</Text>{/*Chose to use the lotieview instead of activity to enhance the journal page */}
 			<LottieView
 				source={require('../assets/lf30_editor_fvdnvkqk.json')}
 				autoPlay

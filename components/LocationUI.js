@@ -5,9 +5,19 @@ import { StyleSheet, Text, View } from 'react-native';
 export default function LocationUI({ locationData, city }) {
 	return (
 		<View>
-			<Text>Location: {city}</Text>
+			<Text style={styles.text}>Location: {city}</Text>
 		</View>
 	);
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+	text:{
+		paddingTop: 15,
+		alignItems: 'center',
+		fontWeight: '500',
+		fontSize: 15,
+		color: '#5c374c',
+		marginLeft: 10,
+	}
+	
+});
